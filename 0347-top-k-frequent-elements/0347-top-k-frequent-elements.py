@@ -1,13 +1,11 @@
+import heapq
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        #Using priority queues or min heap approach 
         freq = Counter(nums)
-        m = []
+        heap = []
         for key, val in freq.items(): 
-            m.append([val, key])
-        m.sort()
-        lst = []
-        for i in range(k):
-            lst.append(m.pop())
-        return [lst[i][1] for i in range(len(lst))]
-
-
+            heapq.heappush(heap, (val, key))
+            if len(heap) > k: 
+                heapq.heappop(heap)
+        return [key for val, key in heap]

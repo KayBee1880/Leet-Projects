@@ -1,14 +1,15 @@
-class Solution: #time, space = O(n), O(1)
+class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        total_tank = 0
-        curr_tank = 0
-        start_station = 0
-        for i in range(len(gas)):
-            total_tank += gas[i] - cost[i]
-            curr_tank += gas[i] - cost[i]
-            if curr_tank < 0:
-                curr_tank = 0 
-                start_station =i + 1 
-        return start_station if total_tank >= 0 else -1
+        total_gas = 0
+        total_cost = 0
+        tank = 0
+        start = 0
+        for i in range(len(gas)): 
+            total_gas += gas[i]
+            total_cost += cost[i]
+            tank = gas[i] - cost[i]
+            if tank < 0:
+                start = i + 1
+                tank = 0
+        return start if total_gas >= total_cost else -1
 
-        

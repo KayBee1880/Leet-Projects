@@ -1,13 +1,12 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         arr = []
-        for num in nums:
+        for num in nums: 
             pos = 0
-            while pos < len(arr) and arr[pos] < num:
+            while pos < len(arr) and arr[pos] < num: 
                 pos += 1
-            if pos == len(arr):
+            if pos == len(arr): 
                 arr.append(num)
-            else:
+            else: 
                 arr[pos] = num
         return len(arr)
-

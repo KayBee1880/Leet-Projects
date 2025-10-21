@@ -1,10 +1,14 @@
-class Solution: #Time complexity = O(log to the base of 5 *N) and space = O(1)
+class Solution:
     def trailingZeroes(self, n: int) -> int:
+        if n <= 1: 
+            result = 1
+        result = 1
+        for i in range(2,n+1):
+            result *= i
         count = 0
-        power_of_5 = 5
-        while n >= power_of_5:
-            count += n//power_of_5
-            power_of_5 *= 5
+        while result%10 == 0:
+            count += 1
+            result//=10
         return count
-
         
+    

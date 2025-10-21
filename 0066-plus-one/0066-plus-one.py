@@ -1,8 +1,10 @@
 class Solution:
-    def plusOne(self, digits: List[int]) -> List[int]: ##O(n) time and O(1) space
-        for i in range(len(digits)-1,-1,-1):
-            if digits[i] < 9:
-                digits[i] += 1
-                return digits
-            digits[i] = 0
-        return [1] + digits
+    def plusOne(self, digits: List[int]) -> List[int]:
+        n = ""
+        for digit in digits: 
+            n+=str(digit)
+        n = int(n) + 1
+        n = str(n)
+        arr = [int(c) for c in n]
+        return arr
+        

@@ -1,13 +1,15 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freq = Counter(nums)
-        m = []
-        for key, val in freq.items(): 
-            m.append([val, key])
-        m.sort()
-        lst = []
-        for i in range(k):
-            lst.append(m.pop())
-        return [lst[i][1] for i in range(len(lst))]
-
+        count_nums = Counter(nums)
+        g = defaultdict(list)
+        for key, val in count_nums.items(): 
+            g[val].append(key)
+        sorted_g = sorted(g, reverse = True)
+        result = []
+        for key in sorted_g: 
+            for value in g[key]: 
+                result.append(value)
+                if len(result) > k: 
+                    return result[:k]
+        return result
 

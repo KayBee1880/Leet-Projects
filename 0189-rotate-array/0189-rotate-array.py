@@ -3,6 +3,6 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        k %= len(nums)
-        if k != 0: 
-            nums[:] = nums[-k:] + nums[:len(nums) - k]
+        k = k%len(nums)
+        n = len(nums) - k
+        nums[:] = nums[n:] + nums[:n]

@@ -1,8 +1,7 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         freq = Counter(nums)
-        return max(freq,key=freq.get)
+        for key, val in freq.items(): 
+            if val == max(list(freq.values())):
+                return key 
         
-
-###Note carefully that this implementation is from the Boyer Moore's Voting Algorithm
-       

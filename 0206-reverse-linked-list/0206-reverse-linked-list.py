@@ -10,11 +10,13 @@ class Solution(object):
         :rtype: Optional[ListNode]
         """
         if not head or not head.next: return head 
-        prev = None 
+        stack = []
         curr = head 
         while curr: 
-            next_node = curr.next
-            curr.next = prev 
-            prev = curr 
-            curr = next_node
-        return prev
+            stack.append(curr.val)
+            curr = curr.next
+        curr = head 
+        while curr: 
+            curr.val = stack.pop()
+            curr = curr.next 
+        return head 

@@ -6,17 +6,22 @@
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode()
-        curr = dummy
+        curr = dummy 
         while list1 and list2: 
-            if list1.val < list2.val:
-                curr.next = list1
-                list1 = list1.next 
-            else:
-                curr.next = list2
+            if list1.val < list2.val: 
+                curr.next = ListNode(list1.val)
+                list1 = list1.next
+                curr = curr.next
+            else: 
+                curr.next = ListNode(list2.val)
                 list2 = list2.next
-            curr = curr.next 
-        if list1 is not None: 
-            curr.next = list1
-        if list2 is not None: 
-            curr.next = list2
+                curr = curr.next 
+
+        curr.next = list1 if list1 else list2
         return dummy.next 
+
+        
+
+# Synced seamlessly with LeetHub Pro
+# Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+# Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna

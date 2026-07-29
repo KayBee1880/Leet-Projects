@@ -6,13 +6,23 @@
 #         self.right = right
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        if not inorder or not postorder: return None 
-        root_val = postorder[-1]
-        root = TreeNode(root_val)
-        root_idx = inorder.index(root_val)
-        root.left = self.buildTree(inorder[:root_idx], postorder[:root_idx])
-        root.right = self.buildTree(inorder[root_idx+1:], postorder[root_idx:-1])
-        return root
+        post_idx = len(postorder) - 1
+        inorder_map = {val:idx for idx, val in enumerate(inorder)}
+        def helper(in_left, in_right): 
+            nonlocal post_idx
+            if in_left > in_right: 
+                return None 
+            root_val = postorder[post_idx]
+            root = TreeNode(root_val)
+            post_idx -= 1
+            root_idx = inorder_map[root_val]
+            root.right = helper(root_idx+1, in_right)
+            root.left = helper(in_left, root_idx-1)
+
+            return root 
+        return helper(0, len(postorder)-1)
+        
+
 
 # Synced seamlessly with LeetHub Pro
 # Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4

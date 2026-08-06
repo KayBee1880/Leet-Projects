@@ -1,21 +1,15 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        """
-        Check if the last index can be reached
-        Input: 
-            - list[int]
-        Output: 
-            - bool val [True / False]
-        Edge Case: 
-            - If list[int] is empty 
-            - If jumps get stuck in the middle of the array
-            - If we get to a point in the traversal where the jump can't take us to the last index
-            -
-        """
         farthest = 0
-        for i in range(len(nums)): 
-            if i > farthest: return False
+        n = len(nums)
+        for i in range(n): 
+            if i > farthest: 
+                return False
             farthest = max(farthest, i + nums[i])
-            if farthest >= len(nums) - 1: 
+            if farthest >= n -1: 
                 return True 
         return False 
+
+# Synced seamlessly with LeetHub Pro
+# Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+# Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna

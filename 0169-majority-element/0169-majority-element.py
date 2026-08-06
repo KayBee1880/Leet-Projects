@@ -1,13 +1,15 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        count = Counter(nums)
-        max_count = 0
-        majority = nums[0]
-        for key, val in count.items(): 
-            if val > max_count:
-                max_count = val 
-                majority = key
-        return majority
+        candidate = None 
+        count = 0
+        for num in nums: 
+            if count == 0: 
+                candidate = num
+            if candidate == num: 
+                count += 1
+            else: 
+                count -= 1
+        return candidate
 
 # Synced seamlessly with LeetHub Pro
 # Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4

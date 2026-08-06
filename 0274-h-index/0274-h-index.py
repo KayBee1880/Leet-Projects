@@ -1,18 +1,14 @@
-class Solution(object):
-    def hIndex(self, citations):
-        """
-        :type citations: List[int]
-        :rtype: int
-        """
-        n = len(citations)
-        bucket = [0] * (n+1)
-        for c in citations: 
-            if c >= n: 
-                bucket[n] += 1
+class Solution:
+    def hIndex(self, citations: List[int]) -> int:
+        citations.sort(reverse = True)
+        count = 0
+        for i in range(len(citations)): 
+            if citations[i] >= i + 1: 
+                count += 1
             else: 
-                bucket[c] += 1
-        total = 0
-        for h in range(n, -1, -1): 
-            total += bucket[h]
-            if total >= h: 
-                return h
+                break
+        return count 
+
+# Synced seamlessly with LeetHub Pro
+# Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+# Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna

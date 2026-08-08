@@ -6,11 +6,15 @@
 #         self.right = right
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        if not p and not q: return True 
-        if not p or not q: return False 
-        left_same = self.isSameTree(p.left, q.left)
-        right_same = self.isSameTree(p.right, q.right)
-        return p.val == q.val and left_same and right_same 
+        queue = deque([(p, q)])
+        while queue: 
+            node_p, node_q = queue.popleft()
+            if not node_p and not node_q: continue 
+            if not node_p or not node_q: return False 
+            if node_p.val != node_q.val: return False 
+            queue.append((node_p.left, node_q.left))
+            queue.append((node_p.right, node_q.right))
+        return True 
 
 # Synced seamlessly with LeetHub Pro
 # Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
